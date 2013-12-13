@@ -16,8 +16,8 @@ type Note struct {
 
 
 func (n *Note) Save(dbMap *gorp.DbMap) error {
-	n.Created = time.Now().UnixNano()
-	n.Modified = time.Now().UnixNano()
+	n.Created = time.Now().Unix()
+	n.Modified = time.Now().Unix()
 	err := dbMap.Insert(n)
 	if(err != nil) {
 		return err
@@ -36,7 +36,7 @@ func (n *Note) Delete(dbMap *gorp.DbMap) (int64,error) {
 }
 
 func (n *Note) Update(dbMap *gorp.DbMap) (int64,error) {
-	n.Modified = time.Now().UnixNano()
+	n.Modified = time.Now().Unix()
 	count, err := dbMap.Update(n)
 	if(err != nil) {
 		return 0,err
