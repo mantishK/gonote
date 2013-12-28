@@ -1,0 +1,36 @@
+.note{
+	margin: 10px 0 10px 0;
+	background-color: #A9F5A9;
+	border-radius: 5px;
+	padding: 7px 7px 0 7px;
+}
+.note .title {
+	font-size: 1.4em;
+	font-style: bold;
+	padding:3px;
+}
+.note .content {
+	font-size: 1em;
+}
+.note .date {
+	font-size: 0.8em;
+	text-align: right;
+}
+#add-button-wrapper{
+	padding-top: 25px;
+	padding-bottom: 25px;
+	text-align: center;
+}
+#new-note-title, #new-note-content, #edit-note-title, #edit-note-content {
+	margin: 10px 0 10px 0;
+}
+.edit-btn, .delete-btn {
+	visibility: hidden;
+}
+.date-wrapper{
+	/*padding: 0;
+	margin: 0;
+*/}
+.edit-btn .glyphicon, .delete-btn .glyphicon{
+	cursor: pointer;
+}

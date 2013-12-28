@@ -1,0 +1,47 @@
+{{set . "title" "Home"}}
+{{template "header.html" .}}
+<script src="/public/js/display_notes.js" type="text/javascript" charset="utf-8"></script>
+<div id="alert-wrapper"></div>
+
+<div id="note-list">
+</div>
+
+<div class="modal fade" id="new-note-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="newNoteModalLabel">New Note</h4>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" placeholder="Title" id="new-note-title"></input>
+        <textarea id="new-note-content" class="form-control" placeholder="Content"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="note-save-btn">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="edit-note-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="editNoteModalLabel">Edit Note</h4>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" placeholder="Title" id="edit-note-title"></input>
+        <textarea id="edit-note-content" class="form-control" placeholder="Content"></textarea>
+        <input type="hidden" class="form-control" id="edit-note-id"></input>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="note-edit-btn">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{template "footer.html" .}}

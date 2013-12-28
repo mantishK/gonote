@@ -4,9 +4,12 @@
   <head>
     <title>{{.title}}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" type="text/css" href="/public/css/bootstrap.css">
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/custom.css">
     <link rel="shortcut icon" type="image/png" href="/public/img/favicon.png">
     <script src="/public/js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/public/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
     {{range .moreStyles}}
       <link rel="stylesheet" type="text/css" href="/public/{{.}}">
     {{end}}
@@ -15,3 +18,12 @@
     {{end}}
   </head>
   <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <h1>Go Note</h1>
+        </div>
+        <div class="col-md-offset-6 col-md-3" id="add-button-wrapper">
+          <button type="button" class="btn btn-primary" id="add-button" data-target="#new-note-modal" data-toggle="modal">New Note</button>
+        </div>
+      </div>
