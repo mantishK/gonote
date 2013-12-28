@@ -47,10 +47,20 @@ func (n *Note) Update(dbMap *gorp.DbMap) (int64,error) {
 func GetNotes(dbMap *gorp.DbMap) ([]Note, int, error) {
 	//var notes []Note 
 	notes := []Note{}
-	_,err := dbMap.Select(&notes,"SELECT * FROM note")
+	_,err := dbMap.Select(&notes,"SELECT * FROM note ORDER BY modified DESC")
 	if err != nil {
 		return nil,0,err
 	}
 	return notes,len(notes), nil
+
+}
+func GetDetails(dbMap *gorp.DbMap, note_id int) (Note, error) {
+	//var notes []Note 
+	note := Note{}
+	err := dbMap.SelectOne(&note,"SELECT * FROM note WHERE note_id = ?",note_id)
+	if err != nil {
+		return note,err
+	}
+	return note, nil
 
 }

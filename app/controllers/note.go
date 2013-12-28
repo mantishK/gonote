@@ -25,6 +25,30 @@ func (c Note) GetNotes() revel.Result {
 	result["response"] = "ok"
 	return c.RenderJson(result)
 }
+func (c Note) GetDetails() revel.Result {
+	dbMap := database.NewConnection()
+	defer dbMap.Db.Close()
+	var note_id int
+	c.Params.Bind(&note_id,"note_id")
+	c.Validation.Required(note_id)
+
+	//build errors
+	errors := c.checkErrors()
+
+	//check and return if errors
+	if (errors != nil) {
+		return c.RenderJson(errors)
+	}
+	note, err := model.GetDetails(dbMap,note_id)
+	if(err != nil) {
+		return c.RenderJson(error.Error{Id:1,ErrorMessage:fmt.Sprint(err),DisplayMessage:"Some error occured"})
+	}
+	result := make(map[string]interface{})
+	result["note_id"] = note_id
+	result["note"] = note
+	result["response"] = "ok"
+	return c.RenderJson(result)
+}
 func (c Note) Add() revel.Result {	
 	dbMap := database.NewConnection()
 	defer dbMap.Db.Close()
@@ -129,4 +153,24 @@ func (c Note) checkErrors()(interface{}) {
 		return errors
 	}
 	return nil
+}
+
+func (c Note) GetUi() revel.Result {
+	dbMap := database.NewConnection()
+	defer dbMap.Db.Close()
+	notes, _, err := model.GetNotes(dbMap)
+	if(err != nil) {
+		c.Validation.Error("Error occured while retreving data from db.")
+	}
+	return c.Render(notes)
+}
+
+func (c Note) AddUi() revel.Result {
+	dbMap := database.NewConnection()
+	defer dbMap.Db.Close()
+	notes, _, err := model.GetNotes(dbMap)
+	if(err != nil) {
+		c.Validation.Error("Error occured while retreving data from db.")
+	}
+	return c.Render(notes)
 }

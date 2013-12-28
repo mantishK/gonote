@@ -4,11 +4,14 @@
 
 module:testrunner
 
-# GET     /                                       Note.Get
-POST 	/note/								Note.Add
-GET		/note/									Note.GetNotes
-PUT /note/   						Note.Update
-DELETE /note/                       Note.Delete
+GET     /                                       Note.GetUi
+GET 	/note/ 									Note.GetUi
+GET  	/note/add/             						Note.AddUi				
+POST 	/api/note/								Note.Add
+GET		/api/note/									Note.GetNotes
+GET		/api/note/details							Note.GetDetails
+PUT /api/note/   						Note.Update
+DELETE /api/note/                       Note.Delete
 
 
 # Ignore favicon requests
