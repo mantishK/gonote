@@ -1,6 +1,6 @@
 package database
 import (
-	"database/sql"
+    "database/sql"
     "github.com/coopernurse/gorp"
     _ "github.com/go-sql-driver/mysql"
     "log"
@@ -11,11 +11,15 @@ import (
 
 func NewConnection() *gorp.DbMap {
     dbUserName := "root"
+    dbPass := "" 
     dbIp := "127.0.0.1"
     dbPortNo := 3306
     dbName := "dummy"
-    dbStringSlice := []string{dbUserName , ":@tcp(" , dbIp , ":" , strconv.Itoa(dbPortNo) , ")/" , dbName}
-	db, err := sql.Open("mysql", strings.Join(dbStringSlice,""))
+    if dbPass != "" {
+        dbPass = ":" + dbPass
+    }
+    dbStringSlice := []string{dbUserName , dbPass, ":@tcp(" , dbIp , ":" , strconv.Itoa(dbPortNo) , ")/" , dbName}
+    db, err := sql.Open("mysql", strings.Join(dbStringSlice,""))
     checkErr(err, "sql.Open failed")
 
     // construct a gorp DbMap
